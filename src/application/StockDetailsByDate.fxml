@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="398.0" prefWidth="364.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1">
+   <children>
+      <Button layoutX="228.0" layoutY="44.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="106.0" text="Start Stock" />
+      <DatePicker layoutX="28.0" layoutY="44.0" />
+      <MenuBar layoutX="-2.0" layoutY="2.0" prefHeight="26.0" prefWidth="364.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <ListView layoutX="28.0" layoutY="99.0" prefHeight="200.0" prefWidth="314.0" />
+      <Button layoutX="176.0" layoutY="313.0" mnemonicParsing="false" prefHeight="6.0" prefWidth="52.0" text="Button" />
+      <Button layoutX="102.0" layoutY="313.0" mnemonicParsing="false" prefHeight="6.0" prefWidth="52.0" text="Button" />
+      <Button layoutX="28.0" layoutY="313.0" mnemonicParsing="false" prefHeight="6.0" prefWidth="52.0" text="Button" />
+   </children>
+</AnchorPane>
