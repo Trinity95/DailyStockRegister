@@ -55,8 +55,8 @@ public class StockDetails {
         String partFileName = date.toString() + SharedConstants.HYPHEN + SharedConstants.PART + SharedConstants.EXCEL_EXTENSION;
         partFile = repo.getFile(getRepoPath(partFileName));
 
-        String finalFileName = date.toString() + SharedConstants.HYPHEN + SharedConstants.PART + SharedConstants.EXCEL_EXTENSION;
-        partFile = repo.getFile(getRepoPath(finalFileName));
+        String finalFileName = date.toString() + SharedConstants.HYPHEN + SharedConstants.FINAL + SharedConstants.EXCEL_EXTENSION;
+        finalFile = repo.getFile(getRepoPath(finalFileName));
         repo.createDir(dirName);
         otherVersionCount = getTotalVersions();
     }
@@ -90,10 +90,11 @@ public class StockDetails {
     public void startStock() {
         StockDetailRepository repo = Main.getInstance().getRepo();
         String fileName = date.toString() + SharedConstants.HYPHEN + SharedConstants.PART + SharedConstants.EXCEL_EXTENSION;
-        String defaultFile = SharedConstants.DEFAULT_FILE;
+        String defaultFile = SharedConstants.DEFAULT_FILE + SharedConstants.EXCEL_EXTENSION;
         try {
             repo.createDir(dirName);
-            repo.writeFile(getRepoPath(fileName), repo.readFile(defaultFile), true);
+            repo.writeFile(getRepoPath(fileName), repo.readFile(defaultFile), false);
+            partFile = repo.getFile(getRepoPath(fileName));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -113,6 +114,7 @@ public class StockDetails {
         String fileName = date.toString() + SharedConstants.HYPHEN + SharedConstants.FINAL + SharedConstants.EXCEL_EXTENSION;
         try {
             repo.writeFile(getRepoPath(fileName), repo.readFile(getRepoPath(getPartFile().getName())), true);
+            finalFile = repo.getFile(getRepoPath(fileName));
         } catch (Exception e) {
             e.printStackTrace();
         }

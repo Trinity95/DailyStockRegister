@@ -151,9 +151,9 @@ public class FileRepository {
         return repository.listFiles();
     }
 
-    public void createDirectory(String dirName) {
+    public boolean createDirectory(String dirName) {
         File file = new File(getChild(dirName));
-        file.mkdirs();
+        return file.mkdirs();
     }
 
 }

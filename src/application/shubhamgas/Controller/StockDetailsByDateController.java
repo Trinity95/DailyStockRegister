@@ -13,7 +13,7 @@ import javafx.scene.control.ListView;
 public class StockDetailsByDateController extends BaseController {
 
     @FXML
-    ListView<String> listView;
+    ListView<String> listView = new ListView<>();
 
     @FXML
     Button editFile;
@@ -30,11 +30,17 @@ public class StockDetailsByDateController extends BaseController {
     @FXML
     DatePicker datePicker;
 
+    @FXML
+    public void initialize() {
+        disableAllButton();
+    }
+
     public void uponDateSelect(ActionEvent event) {
         disableAllButton();
         LocalDate date = datePicker.getValue();
         StockDetails stockDetails = new StockDetails(date);
         setButtonState(stockDetails);
+        updateListView(stockDetails);
     }
 
     public void getVersionHistory(ActionEvent event) {
@@ -46,6 +52,7 @@ public class StockDetailsByDateController extends BaseController {
         LocalDate date = datePicker.getValue();
         StockDetails stockDetails = new StockDetails(date);
         stockDetails.finishStock();
+        updateListView(stockDetails);
         setButtonState(stockDetails);
     }
 
@@ -54,6 +61,7 @@ public class StockDetailsByDateController extends BaseController {
         StockDetails stockDetails = new StockDetails(date);
         stockDetails.resumeStock();
         setButtonState(stockDetails);
+        updateListView(stockDetails);
         openFileInApplication(stockDetails.getPartFile().getAbsolutePath(), false);
     }
 
@@ -62,6 +70,7 @@ public class StockDetailsByDateController extends BaseController {
         StockDetails stockDetails = new StockDetails(date);
         stockDetails.startStock();
         setButtonState(stockDetails);
+        updateListView(stockDetails);
         openFileInApplication(stockDetails.getPartFile().getAbsolutePath(), false);
     }
 
@@ -88,11 +97,20 @@ public class StockDetailsByDateController extends BaseController {
         }
         if (stockDetails.getFinalFile() != null) {
             enableButton(viewHistory);
+            return;
         }
         enableButton(viewHistory);
         enableButton(finalizeStock);
         enableButton(editFile);
     }
 
+    private void updateListView(StockDetails stockDetails) {
+        listView.getItems().clear();
+        if (stockDetails.getPartFile() != null) {
+            listView.getItems().add(stockDetails.getPartFile().getName());
+        }
+        if (stockDetails.getFinalFile() != null) {
+            listView.getItems().add(stockDetails.getFinalFile().getName());
+        }
+    }
 }
-

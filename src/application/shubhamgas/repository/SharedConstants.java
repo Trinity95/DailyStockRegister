@@ -80,7 +80,7 @@ public class SharedConstants {
 
     public static final String FINAL = "final";
 
-    public static final String DEFAULT_FILE = "DEFAULT";
+    public static final String DEFAULT_FILE = "Default";
 
     public static final String VERSION = "version";
 
