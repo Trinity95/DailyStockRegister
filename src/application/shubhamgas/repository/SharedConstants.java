@@ -80,6 +80,12 @@ public class SharedConstants {
 
     public static final String FINAL = "final";
 
+    public static final String DEFAULT_FILE = "DEFAULT";
+
+    public static final String VERSION = "version";
+
+    public static final String MD5_ALGO = "MD5";
+
     public static String STOCK_REGISTER = "StockRegister";
 
 }

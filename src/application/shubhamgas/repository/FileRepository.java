@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.security.MessageDigest;
 
 public class FileRepository {
     String name;
@@ -100,4 +101,59 @@ public class FileRepository {
     private String getChild(String path) {
         return (getRootPath() + SharedConstants.PATH_DELIMITER + path);
     }
+
+    public String generateFileChecksum(String path, String algorithm) throws Exception {
+        InputStream fis = null;
+        String result = "";
+        File file = new File(getChild(path));
+        try {
+            fis = new FileInputStream(file);
+            byte[] buffer = new byte[8096];
+            MessageDigest complete = MessageDigest.getInstance(algorithm);
+            int numRead = 0;
+            while (numRead != -1) {
+                numRead = fis.read(buffer);
+                if (numRead > 0) {
+                    complete.update(buffer, 0, numRead);
+                }
+            }
+            byte[] b = complete.digest();
+            // Generate hex string of SHA
+            for (int i = 0; i < b.length; i++) {
+                result += Integer.toString((b[i] & 0xff) + 0x100, 16).substring(1);
+            }
+        } catch (Exception e) {
+            throw new Exception("Could not generate checksum for file " + file.getAbsolutePath(), e);
+        } finally {
+            if (fis != null) {
+                try {
+                    fis.close();
+                } catch (Exception eClose) {
+                    // Intentionally consume this exception
+                }
+            }
+        }
+        return result;
+    }
+
+    public File getFile(String path) {
+        File file = new File(getChild(path));
+        try {
+            checkFileExists(file);
+        } catch (Exception e) {
+            return null;
+        }
+        return file;
+    }
+
+    public File[] getRepoContents(String folderName) {
+        File repository = new File(getChild(folderName));
+        return repository.listFiles();
+    }
+
+    public void createDirectory(String dirName) {
+        File file = new File(getChild(dirName));
+        file.mkdirs();
+    }
+
 }

@@ -3,18 +3,20 @@ package application;
 import application.shubhamgas.repository.SharedConstants;
 import application.shubhamgas.repository.StockDetailRepository;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
 
 
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			BorderPane root = new BorderPane();
-			Scene scene = new Scene(root,400,400);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		    setStage(primaryStage);
+		    Parent root = FXMLLoader.load(getClass().getResource("/application/StockDetailsByDate.fxml"));
+		    Scene scene = new Scene(root,500,400);
+			scene.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {
@@ -25,6 +27,16 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
+	
+	public Stage getStage() {
+	    return primaryStage;
+	}
+	
+	public void setStage(Stage primaryStage) {
+	    this.primaryStage = primaryStage;
+	}
+	
+	private Stage primaryStage;
 	
 	private static Main instance;
 	

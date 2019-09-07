@@ -5,6 +5,7 @@ import java.io.File;
 import java.time.LocalDate;
 
 import application.Main;
+import application.shubhamgas.repository.SharedConstants;
 import application.shubhamgas.repository.StockDetailRepository;
 
 public class StockDetails {
@@ -49,24 +50,72 @@ public class StockDetails {
     }
 
     private void lookUpStockDetails() {
-        StockDetailRepository stockDetailRepository = Main.getInstance().getRepo();
+        StockDetailRepository repo = Main.getInstance().getRepo();
+
+        String partFileName = date.toString() + SharedConstants.HYPHEN + SharedConstants.PART + SharedConstants.EXCEL_EXTENSION;
+        partFile = repo.getFile(getRepoPath(partFileName));
+
+        String finalFileName = date.toString() + SharedConstants.HYPHEN + SharedConstants.PART + SharedConstants.EXCEL_EXTENSION;
+        partFile = repo.getFile(getRepoPath(finalFileName));
+        repo.createDir(dirName);
+        otherVersionCount = getTotalVersions();
+    }
+
+    private int getTotalVersions() {
+        StockDetailRepository repo = Main.getInstance().getRepo();
+        int count = 0;
+        File[] files = repo.getRepoContents(dirName);
+        for (File fileEntry : files) {
+            if (fileEntry.getName().contains(SharedConstants.VERSION)) {
+                count++;
+            }
+        }
+        return count;
     }
 
     public boolean isStockFinalized() {
+        if (finalFile != null) {
+            return true;
+        }
         return false;
     }
 
     public boolean isStockStarted() {
-        return false;
+        if (partFile == null) {
+            return false;
+        }
+        return true;
     }
 
     public void startStock() {
+        StockDetailRepository repo = Main.getInstance().getRepo();
+        String fileName = date.toString() + SharedConstants.HYPHEN + SharedConstants.PART + SharedConstants.EXCEL_EXTENSION;
+        String defaultFile = SharedConstants.DEFAULT_FILE;
+        try {
+            repo.createDir(dirName);
+            repo.writeFile(getRepoPath(fileName), repo.readFile(defaultFile), true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void resumeStock() {
+        if (shouldCreateVersionStamp()) {
+            createVersionStamp();
+            otherVersionCount++;
+        }
     }
 
     public void finishStock() {
+        StockDetailRepository repo = Main.getInstance().getRepo();
+        createVersionStamp();
+        otherVersionCount++;
+        String fileName = date.toString() + SharedConstants.HYPHEN + SharedConstants.FINAL + SharedConstants.EXCEL_EXTENSION;
+        try {
+            repo.writeFile(getRepoPath(fileName), repo.readFile(getRepoPath(getPartFile().getName())), true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public File[] getVersionHistory() {
@@ -76,10 +125,37 @@ public class StockDetails {
     // private methods
 
     private void createVersionStamp() {
-
+        StockDetailRepository repo = Main.getInstance().getRepo();
+        int newVersion = otherVersionCount + 1;
+        String fileName = date.toString() + SharedConstants.HYPHEN + SharedConstants.VERSION + newVersion + SharedConstants.EXCEL_EXTENSION;
+        try {
+            repo.writeFile(getRepoPath(fileName), repo.readFile(getRepoPath(getPartFile().getName())), true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private boolean shouldCreateVersionStamp() {
+        if (otherVersionCount == 0) {
+            return true;
+        }
+
+        StockDetailRepository repo = Main.getInstance().getRepo();
+        try {
+            String latestVersionFileName =
+                date.toString() + SharedConstants.HYPHEN + SharedConstants.VERSION + otherVersionCount + SharedConstants.EXCEL_EXTENSION;
+            String partFileCheckSum = repo.getFileCheckSum(getRepoPath(getPartFile().getName()));
+            String versionFileCheckSum = repo.getFileCheckSum(getRepoPath(latestVersionFileName));
+            if (versionFileCheckSum.equals(partFileCheckSum)) {
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return true;
+    }
+
+    private String getRepoPath(String fileName) {
+        return dirName + SharedConstants.PATH_DELIMITER + fileName;
     }
 }

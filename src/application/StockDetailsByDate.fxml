@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -10,12 +11,11 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="398.0" prefWidth="364.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1">
+<AnchorPane prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.shubhamgas.Controller.StockDetailsByDateController">
    <children>
-      <Button layoutX="228.0" layoutY="44.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="106.0" text="Start Stock" />
-      <DatePicker layoutX="28.0" layoutY="44.0" />
-      <MenuBar layoutX="-2.0" layoutY="2.0" prefHeight="26.0" prefWidth="364.0">
+      <Button fx:id="startStock" layoutX="366.0" layoutY="99.0" mnemonicParsing="false" onAction="#startStock" prefHeight="26.0" prefWidth="94.0" text="Start Stock" />
+      <DatePicker fx:id="datePicker" layoutX="28.0" layoutY="43.0" onAction="#uponDateSelect" prefHeight="26.0" prefWidth="221.0" promptText="Select Date" />
+      <MenuBar layoutX="-2.0" layoutY="2.0" prefHeight="26.0" prefWidth="500.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
@@ -34,14 +34,15 @@
           </Menu>
         </menus>
       </MenuBar>
-      <ListView layoutX="28.0" layoutY="99.0" prefHeight="200.0" prefWidth="314.0" />
-      <Button layoutX="176.0" layoutY="313.0" mnemonicParsing="false" prefHeight="6.0" prefWidth="52.0" text="Button" />
-      <Button layoutX="102.0" layoutY="313.0" mnemonicParsing="false" prefHeight="6.0" prefWidth="52.0" text="Button" />
-      <Button layoutX="28.0" layoutY="313.0" mnemonicParsing="false" prefHeight="6.0" prefWidth="52.0" text="Button" />
-      <ImageView fitHeight="60.0" fitWidth="90.0" layoutX="299.0" layoutY="313.0" pickOnBounds="true" preserveRatio="true">
+      <ListView layoutX="28.0" layoutY="99.0" prefHeight="281.0" prefWidth="301.0" />
+      <Button fx:id="viewHistory" layoutX="366.0" layoutY="267.0" mnemonicParsing="false" onAction="#getVersionHistory" prefHeight="26.0" prefWidth="94.0" text="View History" />
+      <Button fx:id="finalizeStock" layoutX="366.0" layoutY="226.0" mnemonicParsing="false" onAction="#finalizeStock" prefHeight="26.0" prefWidth="94.0" text="Finalize Stock" />
+      <Button fx:id="editFile" layoutX="366.0" layoutY="187.0" mnemonicParsing="false" onAction="#resumeFile" prefHeight="26.0" prefWidth="94.0" text="Edit PART file" />
+      <ImageView fitHeight="60.0" fitWidth="90.0" layoutX="396.0" layoutY="311.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../Resources/images/hpgas_logo.png" />
          </image>
       </ImageView>
+      <Label layoutX="28.0" layoutY="72.0" prefHeight="26.0" prefWidth="308.0" text="Select date for which you want to start doing stock" />
    </children>
 </AnchorPane>

@@ -19,34 +19,31 @@ public class StockDetailRepository {
         }
     }
 
-    public void writeFile(String fileName, byte[] data, boolean override) throws Exception {
-        String path = stockDetailRepo.getRootPath() + SharedConstants.PATH_DELIMITER + fileName;
-        stockDetailRepo.CreateBinaryFile(path, data, override);
-    }
-
-    public long getFileSize(String fileName) {
-        String path = stockDetailRepo.getRootPath() + SharedConstants.PATH_DELIMITER + fileName;
-        return (new File(path).length());
-    }
-    
-    public int getNumberOfFilesInDirectory() {
-        return getRepoContents().length;        
-    }
-    
-    public File[] getRepoContents() {
-        File repository = new File(stockDetailRepo.getRootPath());
-        return repository.listFiles();
-
-    }
-    
-    public boolean isFileInRepo(String fileName) {
-        File[] files = getRepoContents();
-        for (final File fileEntry : files) {
-            if (fileEntry.getName().equals(fileName)) {
-                return true;
-            }
+    public void writeFile(String path, byte[] data, boolean override) throws Exception {
+        try {
+            stockDetailRepo.CreateBinaryFile(path, data, override);
+        } catch (Exception e) {
+            throw new Exception("Could not write to File");
         }
-        return false;
+    }
+
+    public String getFileCheckSum(String path) throws Exception {
+        try {
+            return stockDetailRepo.generateFileChecksum(path, SharedConstants.MD5_ALGO);
+        } catch (Exception e) {
+            throw new Exception("Could not generate file checksum");
+        }
+    }
+
+    public File getFile(String path) {
+        return stockDetailRepo.getFile(path);
+    }
+
+    public File[] getRepoContents(String folderName) {
+        return stockDetailRepo.getRepoContents(folderName);
+    }
+
+    public void createDir(String dirName) {
+        stockDetailRepo.createDirectory(dirName);
     }
 }
-
