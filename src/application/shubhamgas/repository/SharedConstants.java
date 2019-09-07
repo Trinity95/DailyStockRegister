@@ -1,3 +1,4 @@
+
 package application.shubhamgas.repository;
 
 public class SharedConstants {
@@ -28,7 +29,7 @@ public class SharedConstants {
     public static final char PLUS = '+'; // UNICODE U+002B
 
     public static final String UNDERSCORE = "_";
-    
+
     public static final String HYPHEN = "-";
 
     public static final char IDENTIFIER_PREFIX = '*';
@@ -74,9 +75,11 @@ public class SharedConstants {
     public static final String SIMPLE_DATE_FORMAT = "yyyy-MM-dd";
 
     public static final String EXCEL_EXTENSION = ".xlsx";
-    
+
     public static final String PART = "part";
 
     public static final String FINAL = "final";
-    
+
+    public static String STOCK_REGISTER = "StockRegister";
+
 }
