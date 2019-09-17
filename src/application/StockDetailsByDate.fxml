@@ -11,11 +11,11 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.shubhamgas.Controller.StockDetailsByDateController">
+<AnchorPane prefHeight="700.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.shubhamgas.Controller.StockDetailsByDateController">
    <children>
-      <Button fx:id="startStock" layoutX="366.0" layoutY="99.0" mnemonicParsing="false" onAction="#startStock" prefHeight="26.0" prefWidth="94.0" text="Start Stock" />
-      <DatePicker fx:id="datePicker" editable="false" layoutX="28.0" layoutY="43.0" onAction="#uponDateSelect" prefHeight="26.0" prefWidth="221.0" promptText="Select Date" />
-      <MenuBar layoutX="-2.0" layoutY="2.0" prefHeight="26.0" prefWidth="500.0">
+      <Button fx:id="startStock" layoutX="430.0" layoutY="99.0" mnemonicParsing="false" onAction="#startStock" prefHeight="26.0" prefWidth="94.0" text="Start Stock" />
+      <DatePicker fx:id="datePicker" editable="false" layoutX="28.0" layoutY="45.0" onAction="#uponDateSelect" prefHeight="26.0" prefWidth="221.0" promptText="Select Date" />
+      <MenuBar layoutX="-2.0" layoutY="2.0" prefHeight="26.0" prefWidth="600.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
@@ -34,11 +34,11 @@
           </Menu>
         </menus>
       </MenuBar>
-      <ListView fx:id="listView" layoutX="28.0" layoutY="99.0" prefHeight="281.0" prefWidth="301.0" />
-      <Button fx:id="viewHistory" layoutX="366.0" layoutY="267.0" mnemonicParsing="false" onAction="#getVersionHistory" prefHeight="26.0" prefWidth="94.0" text="View History" />
-      <Button fx:id="finalizeStock" layoutX="366.0" layoutY="226.0" mnemonicParsing="false" onAction="#finalizeStock" prefHeight="26.0" prefWidth="94.0" text="Finalize Stock" />
-      <Button fx:id="editFile" layoutX="366.0" layoutY="187.0" mnemonicParsing="false" onAction="#resumeFile" prefHeight="26.0" prefWidth="94.0" text="Edit PART file" />
-      <ImageView fitHeight="60.0" fitWidth="90.0" layoutX="396.0" layoutY="311.0" pickOnBounds="true" preserveRatio="true">
+      <ListView fx:id="listView" layoutX="28.0" layoutY="99.0" prefHeight="454.0" prefWidth="302.0" />
+      <Button fx:id="viewHistory" layoutX="430.0" layoutY="304.0" mnemonicParsing="false" onAction="#getVersionHistory" prefHeight="26.0" prefWidth="94.0" text="View History" />
+      <Button fx:id="finalizeStock" layoutX="430.0" layoutY="252.0" mnemonicParsing="false" onAction="#finalizeStock" prefHeight="26.0" prefWidth="94.0" text="Finalize Stock" />
+      <Button fx:id="editFile" layoutX="430.0" layoutY="146.0" mnemonicParsing="false" onAction="#resumeFile" prefHeight="26.0" prefWidth="94.0" text="Edit PART file" />
+      <ImageView fitHeight="90.0" fitWidth="69.0" layoutX="451.0" layoutY="463.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../Resources/images/hpgas_logo.png" />
          </image>

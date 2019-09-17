@@ -16,7 +16,7 @@ public class Main extends Application {
 //            primaryStage.setResizable(false);
             getInstance().setStage(primaryStage);
 		    Parent root = FXMLLoader.load(getClass().getResource("/application/StockDetailsByDate.fxml"));
-		    Scene scene = new Scene(root,500,400);
+		    Scene scene = new Scene(root,600,700);
 			scene.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
