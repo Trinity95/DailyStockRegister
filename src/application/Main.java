@@ -13,7 +13,8 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-		    setStage(primaryStage);
+//            primaryStage.setResizable(false);
+            getInstance().setStage(primaryStage);
 		    Parent root = FXMLLoader.load(getClass().getResource("/application/StockDetailsByDate.fxml"));
 		    Scene scene = new Scene(root,500,400);
 			scene.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
@@ -32,7 +33,7 @@ public class Main extends Application {
 	    return primaryStage;
 	}
 	
-	public void setStage(Stage primaryStage) {
+	private void setStage(Stage primaryStage) {
 	    this.primaryStage = primaryStage;
 	}
 	

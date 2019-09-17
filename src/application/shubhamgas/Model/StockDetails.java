@@ -121,7 +121,8 @@ public class StockDetails {
     }
 
     public File[] getVersionHistory() {
-        return null;
+        StockDetailRepository repo = Main.getInstance().getRepo();
+        return repo.getRepoContents(dirName);
     }
 
     // private methods

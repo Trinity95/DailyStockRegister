@@ -12,8 +12,7 @@ import javafx.stage.Stage;
 
 public class BaseController {
     
-    public void init(Object object) {
-        
+    public void init(Object object) {        
     };
 
     private Stage getStage() {
