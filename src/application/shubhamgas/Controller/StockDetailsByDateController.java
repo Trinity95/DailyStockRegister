@@ -7,8 +7,10 @@ import application.shubhamgas.Model.StockDetails;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
+import javafx.util.Callback;
 
 public class StockDetailsByDateController extends BaseController {
 
@@ -32,6 +34,22 @@ public class StockDetailsByDateController extends BaseController {
 
     @FXML
     public void initialize() {
+        Callback<DatePicker, DateCell> callB = new Callback<DatePicker, DateCell>() {
+            @Override
+            public DateCell call(final DatePicker param) {
+                return new DateCell() {
+                    @Override
+                    public void updateItem(LocalDate item, boolean empty) {
+                        super.updateItem(item, empty); // To change body of generated methods, choose Tools | Templates.
+                        LocalDate today = LocalDate.now();
+                        LocalDate hardDate = LocalDate.of(2019, 9, 06);
+                        setDisable(empty || item.compareTo(today) > 0 || item.compareTo(hardDate) < 0);
+                    }
+
+                };
+            }
+        };
+        datePicker.setDayCellFactory(callB);
         disableAllButton();
     }
 

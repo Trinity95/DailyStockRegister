@@ -43,6 +43,6 @@
             <Image url="@../../Resources/images/hpgas_logo.png" />
          </image>
       </ImageView>
-      <Label layoutX="28.0" layoutY="72.0" prefHeight="26.0" prefWidth="308.0" text="Select date for which you want to start doing stock" />
+      <Label layoutX="28.0" layoutY="72.0" prefHeight="26.0" prefWidth="401.0" text="Select date for which you want to start doing stock" />
    </children>
 </AnchorPane>

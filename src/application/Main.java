@@ -13,7 +13,8 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-//            primaryStage.setResizable(false);
+	        primaryStage.setTitle("Daily Stock Register");
+            primaryStage.setResizable(false);
             getInstance().setStage(primaryStage);
 		    Parent root = FXMLLoader.load(getClass().getResource("/application/StockDetailsByDate.fxml"));
 		    Scene scene = new Scene(root,600,700);
