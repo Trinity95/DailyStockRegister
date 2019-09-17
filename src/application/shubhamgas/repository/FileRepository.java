@@ -21,8 +21,7 @@ public class FileRepository {
 
     public String getRootPath() {
         try {
-            File repositoryRootDirectory = new File(System.getProperty("user.home") + SharedConstants.PATH_DELIMITER + "Desktop" +
-                            SharedConstants.PATH_DELIMITER + getName());
+            File repositoryRootDirectory = new File(System.getProperty("user.dir") + "/Resources" + SharedConstants.PATH_DELIMITER + getName());
             return repositoryRootDirectory.getCanonicalPath();
         } catch (Exception e) {
             throw new RuntimeException("Unable to determine file repository root path", e);
