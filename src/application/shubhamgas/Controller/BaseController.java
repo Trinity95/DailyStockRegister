@@ -33,7 +33,7 @@ public class BaseController {
                 controller.init(object);
             }
 
-            Scene scene = new Scene(root, 600, 700);
+            Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
             Stage primaryStage = getStage();
             primaryStage.setScene(scene);

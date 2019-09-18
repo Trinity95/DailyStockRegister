@@ -14,11 +14,14 @@ public class FileDetails {
     private final SimpleLongProperty size;
 
     private SimpleStringProperty dateModified;
+    
+    private String path;
 
     public FileDetails(File file) {
         this.fileName = new SimpleStringProperty(file.getName());
         this.size = new SimpleLongProperty(file.length());
         this.dateModified = new SimpleStringProperty(new Date(file.lastModified()).toString());
+        this.path = file.getAbsolutePath();
     }
 
     public String getFileName() {
@@ -33,4 +36,9 @@ public class FileDetails {
         return dateModified.get();
     }
 
+    public String getPath() {
+        return path;
+    }
+
+    
 }

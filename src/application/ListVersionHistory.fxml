@@ -34,11 +34,11 @@
           </Menu>
         </menus>
       </MenuBar>
-      <TableView fx:id="tableView" layoutX="14.0" layoutY="66.0" prefHeight="550.0" prefWidth="318.0">
+      <TableView fx:id="tableView" layoutX="14.0" layoutY="66.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="403.0">
         <columns>
-          <TableColumn fx:id="fileName" prefWidth="108.79998779296875" text="FileName" />
-          <TableColumn fx:id="dateModified" prefWidth="112.800048828125" text="Date Modified" />
-            <TableColumn fx:id="size" prefWidth="91.99998779296874" text="Size" />
+          <TableColumn fx:id="fileName" prefWidth="152.7999906539917" text="FileName" />
+          <TableColumn fx:id="dateModified" prefWidth="176.7999725341797" text="Date Modified" />
+            <TableColumn fx:id="size" prefWidth="73.5999755859375" text="Size" />
         </columns>
       </TableView>
       <Label layoutX="14.0" layoutY="37.0" prefHeight="18.0" prefWidth="382.0" text="Select file that you want to see and click on 'View'" />

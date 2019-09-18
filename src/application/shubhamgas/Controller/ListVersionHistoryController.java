@@ -4,7 +4,6 @@ package application.shubhamgas.Controller;
 import java.io.File;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import application.shubhamgas.Model.FileDetails;
@@ -44,7 +43,7 @@ public class ListVersionHistoryController extends BaseController {
 
     public void viewFile(ActionEvent event) {
         FileDetails file = tableView.getSelectionModel().getSelectedItem();
-        openFileInApplication(file.getFileName(), true);
+        openFileInApplication(file.getPath(), true);
     }
 
     public void init(Object object) {
